@@ -1,0 +1,30 @@
+{
+  "name": "tracking_contract",
+  "version": "0.1.0",
+  "description": "Contract to track supply chain assets",
+  "main": "truffle.js",
+  "directories": {
+    "test": "test"
+  },
+  "dependencies": {},
+  "devDependencies": {},
+  "scripts": {
+    "test": "truffle test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/miwehrs/tracking_contract.git"
+  },
+  "keywords": [
+    "solidity",
+    "truffle",
+    "contract",
+    "ethereum"
+  ],
+  "author": "miwehrs",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/miwehrs/tracking_contract/issues"
+  },
+  "homepage": "https://github.com/miwehrs/tracking_contract#readme"
+}
