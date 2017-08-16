@@ -2,11 +2,8 @@
 
 ## Architecture
 - Each component (high-value part) is represented as a smart contract
--
 
 ## Compilation
-```shell
-1. truffle compile
-2. truffle migrate
-3. npm run dev
-```
+1. ```shell truffle compile ```
+2. ```shell truffle migrate ```
+3. ```shell npm run dev ```
