@@ -1,8 +1,8 @@
-var MetaCoin = artifacts.require("./MetaCoin.sol");
+componentvar Component = artifacts.require("./Component.sol");
 
-contract('MetaCoin', function(accounts) {
+contract('Component', function(accounts) {
   it("should put 10000 MetaCoin in the first account", function() {
-    return MetaCoin.deployed().then(function(instance) {
+    return Component.deployed().then(function(instance) {
       return instance.getBalance.call(accounts[0]);
     }).then(function(balance) {
       assert.equal(balance.valueOf(), 10000, "10000 wasn't in the first account");
@@ -10,19 +10,19 @@ contract('MetaCoin', function(accounts) {
   });
   it("should call a function that depends on a linked library", function() {
     var meta;
-    var metaCoinBalance;
-    var metaCoinEthBalance;
+    var componentBalance;
+    var componentEthBalance;
 
-    return MetaCoin.deployed().then(function(instance) {
+    return Component.deployed().then(function(instance) {
       meta = instance;
       return meta.getBalance.call(accounts[0]);
     }).then(function(outCoinBalance) {
-      metaCoinBalance = outCoinBalance.toNumber();
+      componentBalance = outCoinBalance.toNumber();
       return meta.getBalanceInEth.call(accounts[0]);
     }).then(function(outCoinBalanceEth) {
-      metaCoinEthBalance = outCoinBalanceEth.toNumber();
+      componentEthBalance = outCoinBalanceEth.toNumber();
     }).then(function() {
-      assert.equal(metaCoinEthBalance, 2 * metaCoinBalance, "Library function returned unexpeced function, linkage may be broken");
+      assert.equal(componentEthBalance, 2 * componentBalance, "Library function returned unexpeced function, linkage may be broken");
     });
   });
 
@@ -40,7 +40,7 @@ contract('MetaCoin', function(accounts) {
 
     var amount = 10;
 
-    return MetaCoin.deployed().then(function(instance) {
+    return Component.deployed().then(function(instance) {
       meta = instance;
       return meta.getBalance.call(account_one);
     }).then(function(balance) {
