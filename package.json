@@ -1,13 +1,13 @@
 {
   "name": "tracking_contract",
   "version": "0.0.2",
-  "description": "Frontend example using truffle v3",
+  "description": "Contract for Supply Chain Tracking",
   "scripts": {
     "lint": "eslint ./",
     "build": "webpack",
     "dev": "webpack-dev-server"
   },
-  "author": "Douglas von Kohorn",
+  "author": "Michael Wehrstein",
   "license": "MIT",
   "devDependencies": {
     "babel-cli": "^6.24.1",

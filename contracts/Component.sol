@@ -7,9 +7,14 @@ contract Component {
 	address owner;
 
 	struct HighValuePart {
-		string componentType;
+		string storage componentType;
 		uint256 id;
 		address creator;
+	}
+
+	modifier onlyOwner() {
+		require(msg.sender == owner);
+		_;
 	}
 
 	event Transfer(address indexed _from, address indexed _to);
@@ -17,9 +22,10 @@ contract Component {
 	function component(string componentType, string id) {
 		HighValuePart.componentType = componentType;
 		HighValuePart.id = id;
+		HighValuePart.creator = msg.sender;
 	}
 
-	function transferComponent(address receiver) returns(bool success) {
+	function transferComponent(address receiver) onlyOwner returns(bool success) {
 		uint count = 0;
 
 		while (owners[count]) {
@@ -32,7 +38,7 @@ contract Component {
 		return true;
 	}
 
-	function checkPrevOwners() returns(mapping) {
+	function checkPrevOwners() returns(mapping(uint => address)) {
 		return owners;
 	}
 

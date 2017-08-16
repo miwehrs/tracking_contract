@@ -1,4 +1,4 @@
-componentvar Component = artifacts.require("./Component.sol");
+var Component = artifacts.require("./Component.sol");
 
 contract('Component', function(accounts) {
   it("should put 10000 MetaCoin in the first account", function() {
