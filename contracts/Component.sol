@@ -7,7 +7,7 @@ contract Component {
 	address owner;
 
 	struct HighValuePart {
-		string storage componentType;
+		string componentType;
 		uint256 id;
 		address creator;
 	}
@@ -25,6 +25,11 @@ contract Component {
 		HighValuePart.creator = msg.sender;
 	}
 
+	/**
+	 * Transfer component from owner to other address
+	 * @param  address receiver
+	 * @return bool success
+	 */
 	function transferComponent(address receiver) onlyOwner returns(bool success) {
 		uint count = 0;
 
@@ -38,18 +43,34 @@ contract Component {
 		return true;
 	}
 
+	/**
+	 * Return history of owners
+	 * @return mapping History of addresses that owned the component
+	 */
 	function checkPrevOwners() returns(mapping(uint => address)) {
 		return owners;
 	}
 
+	/**
+	 * Return creator of component
+	 * @return address creator
+	 */
 	function checkCreator() returns(address) {
 		return HighValuePart.creator;
 	}
 
+	/**
+	 * Return type of component
+	 * @return string type
+	 */
 	function getType() returns(string) {
 		return HighValuePart.componentType;
 	}
 
+	/**
+	 * Return id of component
+	 * @return uint256 identification number
+	 */
 	function getId() returns(uint256) {
 		return HighValuePart.id;
 	}
