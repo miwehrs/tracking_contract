@@ -14,8 +14,8 @@ var Component = contract(component_artifacts);
 // The following code is simple to show off interacting with your contracts.
 // As your needs grow you will likely need to change its form and structure.
 // For application bootstrapping, check out window.addEventListener below.
-//var accounts;
-//var account;
+var accounts;
+var account;
 
 window.App = {
   start: function() {
@@ -39,7 +39,7 @@ window.App = {
       accounts = accs;
       account = accounts[0];
 
-      self.refreshBalance();
+      self.refreshComponents();
     });
   },
 
@@ -57,7 +57,23 @@ window.App = {
       // TODO: Check if call of constructor is possible
       return comp.component.call(compType, compIdentification, {from: account});
     });
-  }
+  },
+
+  refreshBalance: function() {
+    var self = this;
+    var comp;
+
+    Component.deployed().then(function(instance) {
+      comp = instance;
+      return comp.getBalance.call(account, {from: account});
+    }).then(function(value) {
+      var balance_element = document.getElementById("balance");
+      balance_element.innerHTML = value.valueOf();
+    }).catch(function(e) {
+      console.log(e);
+      self.setStatus("Error getting balance; see log.");
+    });
+  },
 };
 
 window.addEventListener('load', function() {
