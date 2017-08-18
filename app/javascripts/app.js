@@ -48,30 +48,30 @@ window.App = {
     var comp;
     var compType;
     var compIdentification;
+    var component;
 
     Component.deployed().then(function(instance) {
       comp = instance;
       compType = document.getElementById(compType);
       compIdentification = document.getElementById(identityNo);
 
-      // TODO: Check if call of constructor is possible
-      return comp.component.call(compType, compIdentification, {from: account});
+      return comp.createComponent.call(compType, compIdentification, {from: account});
     });
   },
 
-  refreshBalance: function() {
+  refreshComponents: function() {
     var self = this;
     var comp;
 
     Component.deployed().then(function(instance) {
       comp = instance;
-      return comp.getBalance.call(account, {from: account});
+      return comp.getComponents.call(account, {from: account});
     }).then(function(value) {
-      var balance_element = document.getElementById("balance");
-      balance_element.innerHTML = value.valueOf();
+      var components_owned = document.getElementById("ownedComponents");
+      balance_element.innerHTML = value[0].componentType.valueOf();
     }).catch(function(e) {
       console.log(e);
-      self.setStatus("Error getting balance; see log.");
+      self.setStatus("Error getting components; see log.");
     });
   },
 };

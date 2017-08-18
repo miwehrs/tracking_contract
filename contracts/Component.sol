@@ -57,12 +57,11 @@ contract Component {
 	 * @param  compId  Component's ID
 	 * @return mapping List of components
 	 */
-	function getComponents() returns(mapping(uint => HighValuePart)) {
-		address requester = msg.sender;
+	function getComponents(address account) returns(mapping(uint => HighValuePart)) {
 		mapping (uint => HighValuePart) reqComponents;
 		uint counter = 0;
 		for (uint i = 0; i < numComponents; i++) {
-			if (components[i].owner == requester) {
+			if (components[i].owner == account) {
 				reqComponents[counter] = components[i];
 				counter++;
 			}
